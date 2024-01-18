@@ -12,9 +12,7 @@ const usersSlice = createSlice({
     },
     saveFromDisk: (state, action) => {
       const { users } = action.payload;
-
       state.users = users;
-      console.log(state.users, 1);
     },
   },
 });

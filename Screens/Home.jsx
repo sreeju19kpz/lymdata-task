@@ -7,6 +7,7 @@ import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
 import { useDispatch, useSelector } from "react-redux";
 import { save, selectCurrentUsers } from "../components/features/users/users";
+import UserBannerSkeleton from "../components/elements/UserBannerSkeleton";
 
 export default Home = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default Home = () => {
   useEffect(() => {
     const fetch = async () => {
       const data = await getAllUsers().unwrap();
-      /*   data && setAllUsers(data);
+      data && setAllUsers(data);
       data &&
         dispatch(
           save({
@@ -32,7 +33,7 @@ export default Home = () => {
               };
             }),
           })
-        ); */
+        );
     };
     fetch();
   }, []);
@@ -40,129 +41,91 @@ export default Home = () => {
   const refresh = () => {
     console.log(1);
   };
-  if (isLoading && !savedUsers && !allUsers) {
+  if (isLoading && !allUsers && !savedUsers) {
     return (
-      <View>
-        <Text>loading</Text>
-      </View>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+        }
+        scrollEventThrottle={16}
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[styles.pad10px, styles.gap10px]}
+      >
+        {Array.from({ length: 8 }).map((_, i) => {
+          return <UserBannerSkeleton key={i} />;
+        })}
+      </ScrollView>
     );
   }
   if (isLoading && savedUsers) {
     return (
-      <LinearGradient
-        colors={["#8F009C", "#000000"]}
-        locations={[0, 0.1]}
-        style={styles.flex1}
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+        }
+        scrollEventThrottle={16}
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[styles.pad10px, styles.gap10px]}
       >
-        <BlurView
-          tint="dark"
-          intensity={30}
-          blurReductionFactor={10}
-          style={[styles.flex1]}
-        >
-          <ScrollView
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={refresh} />
-            }
-            scrollEventThrottle={16}
-            scrollEnabled={true}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={[styles.pad10px, styles.gap10px]}
-          >
-            {savedUsers?.map((item, i) => {
-              return <UserBanner key={i} user={item} />;
-            })}
-          </ScrollView>
-        </BlurView>
-      </LinearGradient>
+        {savedUsers?.map((item, i) => {
+          return <UserBanner key={i} user={item} />;
+        })}
+      </ScrollView>
     );
   }
   if (isLoading && !savedUsers && allUsers) {
     return (
-      <LinearGradient
-        colors={["#8F009C", "#000000"]}
-        locations={[0, 0.1]}
-        style={styles.flex1}
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+        }
+        scrollEventThrottle={16}
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[styles.pad10px, styles.gap10px]}
       >
-        <BlurView
-          tint="dark"
-          intensity={30}
-          blurReductionFactor={10}
-          style={[styles.flex1]}
-        >
-          <ScrollView
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={refresh} />
-            }
-            scrollEventThrottle={16}
-            scrollEnabled={true}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={[styles.pad10px, styles.gap10px]}
-          >
-            {allUsers?.map((item, i) => {
-              return <UserBanner key={i} user={item} />;
-            })}
-          </ScrollView>
-        </BlurView>
-      </LinearGradient>
+        {allUsers?.map((item, i) => {
+          return <UserBanner key={i} user={item} />;
+        })}
+      </ScrollView>
     );
   }
   if (!isLoading && !allUsers && savedUsers) {
     return (
-      <LinearGradient
-        colors={["#8F009C", "#000000"]}
-        locations={[0, 0.1]}
-        style={styles.flex1}
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+        }
+        scrollEventThrottle={16}
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[styles.pad10px, styles.gap10px]}
       >
-        <BlurView
-          tint="dark"
-          intensity={30}
-          blurReductionFactor={10}
-          style={[styles.flex1]}
-        >
-          <ScrollView
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={refresh} />
-            }
-            scrollEventThrottle={16}
-            scrollEnabled={true}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={[styles.pad10px, styles.gap10px]}
-          >
-            {savedUsers?.map((item, i) => {
-              return <UserBanner key={i} user={item} />;
-            })}
-          </ScrollView>
-        </BlurView>
-      </LinearGradient>
+        {savedUsers?.map((item, i) => {
+          return <UserBanner key={i} user={item} />;
+        })}
+      </ScrollView>
     );
   }
   return (
-    <LinearGradient
-      colors={["#8F009C", "#000000"]}
-      locations={[0, 0.1]}
-      style={styles.flex1}
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+      }
+      scrollEventThrottle={16}
+      scrollEnabled={true}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={[
+        styles.pad10px,
+        styles.gap10px,
+        { backgroundColor: "rgba(27,36,45,255)" },
+      ]}
     >
-      <BlurView
-        tint="dark"
-        intensity={30}
-        blurReductionFactor={10}
-        style={[styles.flex1]}
-      >
-        <ScrollView
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={refresh} />
-          }
-          scrollEventThrottle={16}
-          scrollEnabled={true}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={[styles.pad10px, styles.gap10px]}
-        >
-          {allUsers?.map((item, i) => {
-            return <UserBanner key={i} user={item} />;
-          })}
-        </ScrollView>
-      </BlurView>
-    </LinearGradient>
+      {allUsers?.map((item, i) => {
+        return <UserBanner key={i} user={item} />;
+      })}
+    </ScrollView>
   );
 };

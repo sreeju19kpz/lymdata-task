@@ -5,7 +5,7 @@ import avatar from "../../assets/avatar.png";
 import { useNavigation } from "@react-navigation/native";
 import { Skeleton } from "moti/skeleton";
 
-export default UserBanner = ({ user }) => {
+export default UserBannerSkeleton = () => {
   const navigation = useNavigation();
   const [activate, setActivate] = useState(false);
   return (
@@ -22,12 +22,11 @@ export default UserBanner = ({ user }) => {
         styles.borRad10Px,
 
         {
-          backgroundColor: "rgba(37,49,61,255)",
+          backgroundColor: "rgba(0,0,0,.7)",
         },
       ]}
     >
-      <Pressable
-        onPress={() => navigation.navigate("Details", { id: user.id })}
+      <View
         style={[
           styles.flex1,
           styles.flexDirRow,
@@ -36,35 +35,41 @@ export default UserBanner = ({ user }) => {
         ]}
       >
         <View style={{ overflow: "hidden", backgroundColor: "transparent" }}>
-          <Image
-            style={[styles.width44px, styles.height44px]}
-            source={user?.dp || avatar}
+          <Skeleton
+            width={44}
+            height={44}
+            radius={"round"}
+            transition={{
+              type: "timing",
+              duration: 1000,
+            }}
           />
         </View>
         <View style={[styles.flexDirRow, styles.gap10px]}>
-          <View>
-            <Text style={[styles.fonSiz18, { color: "white" }]}>
-              {user.name}
-            </Text>
+          <View style={[styles.gap10px]}>
+            <Skeleton
+              width={200}
+              height={14}
+              radius={"round"}
+              transition={{
+                type: "timing",
+                duration: 1000,
+              }}
+            />
             <View style={[styles.flexDirRow, { gap: 3 }]}>
-              <Text
-                style={[styles.fonSiz11, { color: "rgba(255,255,255,0.5)" }]}
-              >
-                @
-              </Text>
-              <Text
-                style={[
-                  styles.fonSiz13,
-                  styles.fonColBlaLig1,
-                  { lineHeight: 18, color: "rgba(255,255,255,0.5)" },
-                ]}
-              >
-                {user.username}
-              </Text>
+              <Skeleton
+                width={150}
+                height={8}
+                radius={"round"}
+                transition={{
+                  type: "timing",
+                  duration: 1000,
+                }}
+              />
             </View>
           </View>
         </View>
-      </Pressable>
+      </View>
     </View>
   );
 };

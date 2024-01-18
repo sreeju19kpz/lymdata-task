@@ -6,6 +6,8 @@ import { useGetUserMutation } from "../features/acbReports/userApiSlice";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { Skeleton } from "moti/skeleton";
+import UserModelSkeleton from "./UserModelSkeleton";
 
 export default UserModel = ({ route }) => {
   const { id } = route.params;
@@ -18,6 +20,9 @@ export default UserModel = ({ route }) => {
     };
     fetch();
   }, []);
+  if (isLoading) {
+    return <UserModelSkeleton />;
+  }
   return (
     <>
       <ScrollView

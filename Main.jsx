@@ -13,34 +13,11 @@ import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "./StyleSheet";
 import Home from "./Screens/Home";
-import Details from "./Screens/Details";
 import UserModel from "./components/modals/UserModel";
-import { useRef, useState } from "react";
-import AnimatedTitleBar from "./Screens/Demo";
 
 const Stack = createStackNavigator();
 
 export default function Main() {
-  const transitionSpec = {
-    enter: {
-      transitionSpec: {
-        duration: 300,
-        easing: Easing.easeInOutQuad,
-      },
-      animation: {
-        type: "slideInFromBottom",
-      },
-    },
-    exit: {
-      transitionSpec: {
-        duration: 300,
-        easing: Easing.easeInOutQuad,
-      },
-      animation: {
-        type: "slideOutToTop",
-      },
-    },
-  };
   return (
     <NavigationContainer>
       <LinearGradient
@@ -57,6 +34,12 @@ export default function Main() {
           <Stack.Navigator
             screenOptions={{
               animationEnabled: false,
+              headerStyle: {
+                backgroundColor: "rgba(27,36,45,255)",
+                elevation: 0,
+                shadowOpacity: 0,
+              },
+              headerTintColor: "white",
             }}
           >
             <Stack.Screen name="Home" children={() => <Home />} />
