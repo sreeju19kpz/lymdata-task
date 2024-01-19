@@ -11,14 +11,7 @@ import { Skeleton } from "moti/skeleton";
 export default UserModel = () => {
   return (
     <>
-      <View
-        style={[
-          styles.width100p,
-          styles.pad10px,
-          styles.flex1,
-          { backgroundColor: "rgba(27,36,45,255)" },
-        ]}
-      >
+      <View style={[styles.width100p, styles.pad10px, styles.flex1]}>
         <View style={{ marginBottom: 30 }}>
           <View
             style={[
@@ -29,6 +22,7 @@ export default UserModel = () => {
             ]}
           >
             <Skeleton
+              colorMode="dark"
               width={240}
               height={240}
               radius={"round"}
@@ -41,6 +35,7 @@ export default UserModel = () => {
           <View style={[styles.width100p, styles.aliIteCnt]}>
             <View style={[styles.flexDirRow, { gap: 30 }]}>
               <Skeleton
+                colorMode="dark"
                 width={47}
                 height={47}
                 radius={"round"}
@@ -50,6 +45,7 @@ export default UserModel = () => {
                 }}
               />
               <Skeleton
+                colorMode="dark"
                 width={47}
                 height={47}
                 radius={"round"}
@@ -62,8 +58,9 @@ export default UserModel = () => {
           </View>
           <View style={[styles.pad10px, styles.gap10px]}>
             <Skeleton
+              colorMode="dark"
               width={200}
-              height={24}
+              height={28}
               radius={"round"}
               transition={{
                 type: "timing",
@@ -71,8 +68,9 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
+              colorMode="dark"
               width={"100%"}
-              height={40}
+              height={50}
               radius={"round"}
               transition={{
                 type: "timing",
@@ -80,8 +78,9 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
+              colorMode="dark"
               width={200}
-              height={24}
+              height={28}
               radius={"round"}
               transition={{
                 type: "timing",
@@ -89,8 +88,9 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
+              colorMode="dark"
               width={"100%"}
-              height={40}
+              height={50}
               radius={"round"}
               transition={{
                 type: "timing",
@@ -98,8 +98,9 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
+              colorMode="dark"
               width={200}
-              height={24}
+              height={28}
               radius={"round"}
               transition={{
                 type: "timing",
@@ -107,8 +108,9 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
+              colorMode="dark"
               width={"100%"}
-              height={40}
+              height={50}
               radius={"round"}
               transition={{
                 type: "timing",
@@ -116,8 +118,9 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
+              colorMode="dark"
               width={200}
-              height={24}
+              height={28}
               radius={"round"}
               transition={{
                 type: "timing",
@@ -125,8 +128,9 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
+              colorMode="dark"
               width={"100%"}
-              height={40}
+              height={50}
               radius={"round"}
               transition={{
                 type: "timing",

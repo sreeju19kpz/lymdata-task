@@ -1,7 +1,9 @@
 import "react-native-gesture-handler";
 import {
   Animated,
+  Dimensions,
   Easing,
+  ImageBackground,
   StatusBar,
   StyleSheet,
   Text,
@@ -14,39 +16,34 @@ import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "./StyleSheet";
 import Home from "./Screens/Home";
 import UserModel from "./components/modals/UserModel";
-
+import img from "./assets/blue.jpg";
 const Stack = createStackNavigator();
 
 export default function Main() {
+  const SCREEN_HEIGHT = Dimensions.get("window").height;
+  console.log(SCREEN_HEIGHT);
   return (
-    <NavigationContainer>
-      <LinearGradient
-        colors={["#C100D3", "#8F009C"]}
-        locations={[0.0, 0.04]}
-        style={[styles.flex1, { elevation: 0, shadowOpacity: 0 }]}
-      >
-        <BlurView
-          tint="dark"
-          intensity={27}
-          blurReductionFactor={4}
-          style={[styles.flex1, { elevation: 0, shadowOpacity: 0 }]}
-        >
+    <>
+      <NavigationContainer theme={{ colors: { background: "transparent" } }}>
+        <ImageBackground source={img} style={{ flex: 1 }} blurRadius={100}>
           <Stack.Navigator
             screenOptions={{
+              headerShown: true,
               animationEnabled: false,
               headerStyle: {
-                backgroundColor: "rgba(27,36,45,255)",
+                height: 100,
                 elevation: 0,
                 shadowOpacity: 0,
+                backgroundColor: "transparent",
               },
-              headerTintColor: "white",
+              headerTintColor: "grey",
             }}
           >
             <Stack.Screen name="Home" children={() => <Home />} />
             <Stack.Screen name="Details" component={UserModel} />
           </Stack.Navigator>
-        </BlurView>
-      </LinearGradient>
-    </NavigationContainer>
+        </ImageBackground>
+      </NavigationContainer>
+    </>
   );
 }

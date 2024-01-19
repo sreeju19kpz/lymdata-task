@@ -3,64 +3,94 @@ import React, { useState } from "react";
 import { styles } from "../../StyleSheet";
 import avatar from "../../assets/avatar.png";
 import { useNavigation } from "@react-navigation/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { Skeleton } from "moti/skeleton";
-
-export default UserBannerSkeleton = () => {
+export default UserBanner = ({ user }) => {
   const navigation = useNavigation();
-  const [activate, setActivate] = useState(false);
+
   return (
     <View
       style={[
         styles.width100p,
         styles.height75px,
         styles.flexDirRow,
-        styles.gap10px,
         styles.aliIteCnt,
+        styles.jusConCnt,
         styles.pad10px,
-        styles.borWid1px,
-        styles.borColBlaLig,
-        styles.borRad10Px,
 
         {
-          backgroundColor: "rgba(0,0,0,.7)",
+          backgroundColor: "transparent",
+          height: 150,
         },
       ]}
     >
-      <View
-        style={[
-          styles.flex1,
-          styles.flexDirRow,
-          styles.gap10px,
-          styles.aliIteCnt,
-        ]}
+      <Pressable
+        onPress={() => navigation.navigate("Details", { id: user?.id })}
+        style={[styles.flexDirRow, styles.aliIteCnt, { width: 300, gap: 30 }]}
       >
         <View style={{ overflow: "hidden", backgroundColor: "transparent" }}>
           <Skeleton
-            width={44}
-            height={44}
+            width={80}
+            height={80}
             radius={"round"}
+            colorMode="dark"
             transition={{
               type: "timing",
               duration: 1000,
             }}
           />
         </View>
-        <View style={[styles.flexDirRow, styles.gap10px]}>
-          <View style={[styles.gap10px]}>
+        <View
+          style={[
+            styles.gap10px,
+            {
+              height: "100%",
+              justifyContent: "space-around",
+              paddingVertical: 20,
+            },
+          ]}
+        >
+          <View style={{ gap: 5 }}>
             <Skeleton
-              width={200}
-              height={14}
+              width={100}
+              height={15}
               radius={"round"}
+              colorMode="dark"
               transition={{
                 type: "timing",
                 duration: 1000,
               }}
             />
-            <View style={[styles.flexDirRow, { gap: 3 }]}>
+
+            <Skeleton
+              width={100}
+              height={10}
+              radius={"round"}
+              colorMode="dark"
+              transition={{
+                type: "timing",
+                duration: 1000,
+              }}
+            />
+          </View>
+          <View style={[styles.width100p]}>
+            <View style={[styles.flexDirRow, { gap: 10 }]}>
               <Skeleton
-                width={150}
-                height={8}
+                width={30}
+                height={30}
                 radius={"round"}
+                colorMode="dark"
+                transition={{
+                  type: "timing",
+                  duration: 1000,
+                }}
+              />
+              <Skeleton
+                width={30}
+                height={30}
+                radius={"round"}
+                colorMode="dark"
                 transition={{
                   type: "timing",
                   duration: 1000,
@@ -69,7 +99,7 @@ export default UserBannerSkeleton = () => {
             </View>
           </View>
         </View>
-      </View>
+      </Pressable>
     </View>
   );
 };

@@ -10,6 +10,11 @@ import { save, selectCurrentUsers } from "../components/features/users/users";
 import UserBannerSkeleton from "../components/elements/UserBannerSkeleton";
 
 export default Home = () => {
+  function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
   const dispatch = useDispatch();
   const savedUsers = useSelector(selectCurrentUsers);
   const [allUsers, setAllUsers] = useState(null);
@@ -38,10 +43,29 @@ export default Home = () => {
     fetch();
   }, []);
 
-  const refresh = () => {
-    console.log(1);
+  const refresh = async () => {
+    setRefreshing(true);
+    await sleep(3000);
+    const data = await getAllUsers().unwrap();
+    data && setAllUsers(data);
+    data &&
+      dispatch(
+        save({
+          users: data.map((item) => {
+            return {
+              id: item.id,
+              dp: item.dp,
+              name: item.name,
+              username: item.username,
+              website: item.website,
+            };
+          }),
+        })
+      );
+    setRefreshing(false);
   };
-  if (isLoading && !allUsers && !savedUsers) {
+
+  if (refreshing || (isLoading && !allUsers && !savedUsers)) {
     return (
       <ScrollView
         refreshControl={
@@ -50,7 +74,7 @@ export default Home = () => {
         scrollEventThrottle={16}
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[styles.pad10px, styles.gap10px]}
+        contentContainerStyle={[{ backgroundColor: "transparent", gap: 1 }]}
       >
         {Array.from({ length: 8 }).map((_, i) => {
           return <UserBannerSkeleton key={i} />;
@@ -58,7 +82,7 @@ export default Home = () => {
       </ScrollView>
     );
   }
-  if (isLoading && savedUsers) {
+  if (!refreshing && isLoading && savedUsers) {
     return (
       <ScrollView
         refreshControl={
@@ -67,7 +91,7 @@ export default Home = () => {
         scrollEventThrottle={16}
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[styles.pad10px, styles.gap10px]}
+        contentContainerStyle={[{ backgroundColor: "transparent", gap: 1 }]}
       >
         {savedUsers?.map((item, i) => {
           return <UserBanner key={i} user={item} />;
@@ -75,7 +99,7 @@ export default Home = () => {
       </ScrollView>
     );
   }
-  if (isLoading && !savedUsers && allUsers) {
+  if (!refreshing && isLoading && !savedUsers && allUsers) {
     return (
       <ScrollView
         refreshControl={
@@ -84,7 +108,7 @@ export default Home = () => {
         scrollEventThrottle={16}
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[styles.pad10px, styles.gap10px]}
+        contentContainerStyle={[{ backgroundColor: "transparent", gap: 1 }]}
       >
         {allUsers?.map((item, i) => {
           return <UserBanner key={i} user={item} />;
@@ -101,7 +125,7 @@ export default Home = () => {
         scrollEventThrottle={16}
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[styles.pad10px, styles.gap10px]}
+        contentContainerStyle={[{ backgroundColor: "transparent", gap: 1 }]}
       >
         {savedUsers?.map((item, i) => {
           return <UserBanner key={i} user={item} />;
@@ -110,22 +134,21 @@ export default Home = () => {
     );
   }
   return (
-    <ScrollView
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={refresh} />
-      }
-      scrollEventThrottle={16}
-      scrollEnabled={true}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={[
-        styles.pad10px,
-        styles.gap10px,
-        { backgroundColor: "rgba(27,36,45,255)" },
-      ]}
-    >
-      {allUsers?.map((item, i) => {
-        return <UserBanner key={i} user={item} />;
-      })}
-    </ScrollView>
+    <>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+        }
+        scrollEventThrottle={16}
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        style={{ backgroundColor: "transparent" }}
+        contentContainerStyle={[{ backgroundColor: "transparent", gap: 1 }]}
+      >
+        {allUsers?.map((item, i) => {
+          return <UserBanner key={i} user={item} />;
+        })}
+      </ScrollView>
+    </>
   );
 };
