@@ -1,4 +1,4 @@
-import { RefreshControl, ScrollView, Text, View } from "react-native";
+import { FlatList, RefreshControl, ScrollView, Text, View } from "react-native";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useGetAllUsersMutation } from "../components/features/acbReports/userApiSlice";
 import { styles } from "../StyleSheet";
@@ -8,6 +8,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useDispatch, useSelector } from "react-redux";
 import { save, selectCurrentUsers } from "../components/features/users/users";
 import UserBannerSkeleton from "../components/elements/UserBannerSkeleton";
+import { useSharedValue } from "react-native-reanimated";
 
 export default Home = () => {
   function sleep(ms) {
@@ -20,6 +21,15 @@ export default Home = () => {
   const [allUsers, setAllUsers] = useState(null);
   const [getAllUsers, { isLoading }] = useGetAllUsersMutation();
   const [refreshing, setRefreshing] = useState(false);
+  const viewableItemss = useSharedValue([]);
+
+  const onViewableItemsChanged = ({ viewableItems: items }) => {
+    viewableItemss.value = items;
+  };
+
+  // 2. create a reference to the function (above)
+  const viewabilityConfigCallbackPairs = useRef([{ onViewableItemsChanged }]);
+
   useEffect(() => {});
   useEffect(() => {
     const fetch = async () => {
@@ -147,7 +157,34 @@ export default Home = () => {
   }
   return (
     <>
-      <ScrollView
+      <FlatList
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+        }
+        scrollEventThrottle={16}
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        style={{ backgroundColor: "transparent" }}
+        viewabilityConfig={{ viewAreaCoveragePercentThreshold: 50 }}
+        contentContainerStyle={[{ backgroundColor: "transparent" }]}
+        viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
+        numColumns={2}
+        data={allUsers}
+        renderItem={({ item, index }) => {
+          return (
+            <UserBanner
+              user={item}
+              index={index}
+              key={index}
+              viewableItems={viewableItemss}
+            />
+          );
+        }}
+      />
+    </>
+  );
+};
+/*   <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={refresh} />
         }
@@ -163,7 +200,4 @@ export default Home = () => {
         {allUsers?.map((item, i) => {
           return <UserBanner key={i} user={item} />;
         })}
-      </ScrollView>
-    </>
-  );
-};
+      </ScrollView> */

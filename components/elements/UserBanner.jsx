@@ -5,7 +5,8 @@ import avatar from "../../assets/avatar.png";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
-export default UserBanner = ({ user }) => {
+
+export default UserBanner = React.memo(({ user }) => {
   const navigation = useNavigation();
 
   return (
@@ -143,4 +144,4 @@ export default UserBanner = ({ user }) => {
       </Pressable>
     </View>
   );
-};
+});
