@@ -105,7 +105,7 @@ export default UserModel = ({ route }) => {
             </View>
           </View>
           <View style={[styles.pad10px, styles.gap10px]}>
-            <Text style={[styles.fonSiz18, { color: "white" }]}>name</Text>
+            <Text style={[styles.fonSiz18]}>name</Text>
             <View
               style={[
                 styles.flexDirRow,
@@ -122,9 +122,7 @@ export default UserModel = ({ route }) => {
             >
               <Text style={[styles.fonSiz18]}>{user?.name}</Text>
             </View>
-            <Text style={[styles.fonSiz18, , { color: "white" }]}>
-              email address
-            </Text>
+            <Text style={[styles.fonSiz18]}>email address</Text>
             <View
               style={[
                 styles.flexDirRow,
@@ -142,9 +140,7 @@ export default UserModel = ({ route }) => {
               <Text style={[styles.fonSiz18]}>{user?.email}</Text>
             </View>
             <View style={[styles.gap10px]}>
-              <Text style={[styles.fonSiz18, , { color: "white" }]}>
-                street :
-              </Text>
+              <Text style={[styles.fonSiz18]}>street</Text>
               <View
                 style={[
                   styles.flexDirRow,
@@ -161,7 +157,7 @@ export default UserModel = ({ route }) => {
               >
                 <Text style={[styles.fonSiz18]}>{user?.address.street}</Text>
               </View>
-              <Text style={[styles.fonSiz18, { color: "white" }]}>suite :</Text>
+              <Text style={[styles.fonSiz18]}>suite</Text>
               <View
                 style={[
                   styles.flexDirRow,
@@ -178,7 +174,7 @@ export default UserModel = ({ route }) => {
               >
                 <Text style={[styles.fonSiz18]}>{user?.address.suite}</Text>
               </View>
-              <Text style={[styles.fonSiz18, { color: "white" }]}>city :</Text>
+              <Text style={[styles.fonSiz18]}>city :</Text>
               <View
                 style={[
                   styles.flexDirRow,
@@ -195,9 +191,7 @@ export default UserModel = ({ route }) => {
               >
                 <Text style={[styles.fonSiz18]}>{user?.address.city}</Text>
               </View>
-              <Text style={[styles.fonSiz18, { color: "white" }]}>
-                zipcode :
-              </Text>
+              <Text style={[styles.fonSiz18]}>zipcode :</Text>
               <View
                 style={[
                   styles.flexDirRow,
@@ -216,9 +210,7 @@ export default UserModel = ({ route }) => {
               </View>
             </View>
             <View style={[styles.gap10px]}>
-              <Text style={[styles.fonSiz18, { color: "white" }]}>
-                comapny name
-              </Text>
+              <Text style={[styles.fonSiz18]}>comapny name</Text>
               <View
                 style={[
                   styles.flexDirRow,
@@ -235,7 +227,7 @@ export default UserModel = ({ route }) => {
               >
                 <Text style={[styles.fonSiz18]}>{user?.company.name}</Text>
               </View>
-              <Text style={[styles.fonSiz18, { color: "white" }]}>bs :</Text>
+              <Text style={[styles.fonSiz18]}>bs :</Text>
               <View
                 style={[
                   styles.flexDirRow,

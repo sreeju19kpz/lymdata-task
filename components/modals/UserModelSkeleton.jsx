@@ -22,7 +22,7 @@ export default UserModel = () => {
             ]}
           >
             <Skeleton
-              colorMode="dark"
+              colorMode="light"
               width={240}
               height={240}
               radius={"round"}
@@ -35,7 +35,7 @@ export default UserModel = () => {
           <View style={[styles.width100p, styles.aliIteCnt]}>
             <View style={[styles.flexDirRow, { gap: 30 }]}>
               <Skeleton
-                colorMode="dark"
+                colorMode="light"
                 width={47}
                 height={47}
                 radius={"round"}
@@ -45,7 +45,7 @@ export default UserModel = () => {
                 }}
               />
               <Skeleton
-                colorMode="dark"
+                colorMode="light"
                 width={47}
                 height={47}
                 radius={"round"}
@@ -58,7 +58,7 @@ export default UserModel = () => {
           </View>
           <View style={[styles.pad10px, styles.gap10px]}>
             <Skeleton
-              colorMode="dark"
+              colorMode="light"
               width={200}
               height={28}
               radius={"round"}
@@ -68,7 +68,7 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
-              colorMode="dark"
+              colorMode="light"
               width={"100%"}
               height={50}
               radius={"round"}
@@ -78,7 +78,7 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
-              colorMode="dark"
+              colorMode="light"
               width={200}
               height={28}
               radius={"round"}
@@ -88,7 +88,7 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
-              colorMode="dark"
+              colorMode="light"
               width={"100%"}
               height={50}
               radius={"round"}
@@ -98,7 +98,7 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
-              colorMode="dark"
+              colorMode="light"
               width={200}
               height={28}
               radius={"round"}
@@ -108,7 +108,7 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
-              colorMode="dark"
+              colorMode="light"
               width={"100%"}
               height={50}
               radius={"round"}
@@ -118,7 +118,7 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
-              colorMode="dark"
+              colorMode="light"
               width={200}
               height={28}
               radius={"round"}
@@ -128,7 +128,7 @@ export default UserModel = () => {
               }}
             />
             <Skeleton
-              colorMode="dark"
+              colorMode="light"
               width={"100%"}
               height={50}
               radius={"round"}

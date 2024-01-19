@@ -74,7 +74,10 @@ export default Home = () => {
         scrollEventThrottle={16}
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[{ backgroundColor: "transparent", gap: 1 }]}
+        contentContainerStyle={[
+          styles.flexDirRow,
+          { backgroundColor: "transparent", flexWrap: "wrap" },
+        ]}
       >
         {Array.from({ length: 8 }).map((_, i) => {
           return <UserBannerSkeleton key={i} />;
@@ -91,7 +94,10 @@ export default Home = () => {
         scrollEventThrottle={16}
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[{ backgroundColor: "transparent", gap: 1 }]}
+        contentContainerStyle={[
+          styles.flexDirRow,
+          { backgroundColor: "transparent", flexWrap: "wrap" },
+        ]}
       >
         {savedUsers?.map((item, i) => {
           return <UserBanner key={i} user={item} />;
@@ -108,7 +114,10 @@ export default Home = () => {
         scrollEventThrottle={16}
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[{ backgroundColor: "transparent", gap: 1 }]}
+        contentContainerStyle={[
+          styles.flexDirRow,
+          { backgroundColor: "transparent", flexWrap: "wrap" },
+        ]}
       >
         {allUsers?.map((item, i) => {
           return <UserBanner key={i} user={item} />;
@@ -125,7 +134,10 @@ export default Home = () => {
         scrollEventThrottle={16}
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[{ backgroundColor: "transparent", gap: 1 }]}
+        contentContainerStyle={[
+          styles.flexDirRow,
+          { backgroundColor: "transparent", flexWrap: "wrap" },
+        ]}
       >
         {savedUsers?.map((item, i) => {
           return <UserBanner key={i} user={item} />;
@@ -143,7 +155,10 @@ export default Home = () => {
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
         style={{ backgroundColor: "transparent" }}
-        contentContainerStyle={[{ backgroundColor: "transparent", gap: 1 }]}
+        contentContainerStyle={[
+          styles.flexDirRow,
+          { backgroundColor: "transparent", flexWrap: "wrap" },
+        ]}
       >
         {allUsers?.map((item, i) => {
           return <UserBanner key={i} user={item} />;
